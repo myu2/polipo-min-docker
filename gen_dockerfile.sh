@@ -5,15 +5,14 @@ curl -sL https://raw.githubusercontent.com/phusion/baseimage-docker/master/Chang
    | awk '{print $2}' \
    | head -1
    )
-$newest_img
 
-if [ $newest_img -z ]; then
-newest_img=0.9.18   ## currently newest version 2015/12/10
+if [ -z $newest_ver ]; then
+  newest_ver=0.9.18   ## currently newest version 2015/12/10
 fi
 
 cat<<EOF > Dockerfile
 ## Newest version now
-FROM phusion/baseimage:$newest_img
+FROM phusion/baseimage:$newest_ver
 
 RUN apt-get update && apt-get install -y polipo
 
