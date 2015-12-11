@@ -1,4 +1,5 @@
 #/bin/sh
+
 newest_ver=$(  \
 curl -sL https://raw.githubusercontent.com/phusion/baseimage-docker/master/Changelog.md \
    | egrep '## [^ ]* ' \
@@ -18,7 +19,8 @@ RUN apt-get update -q && apt-get install -y polipo
 
 RUN mkdir /etc/service/polipo
 ADD polipo.sh /etc/service/polipo/run
-ADD etc/polipo /etc/polipo/
+
+VOLUME ["/etc/polipo"]
 
 ## Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
@@ -28,5 +30,4 @@ EXPOSE 8123
 
 ## init system
 CMD ["/sbin/my_init"]
-
 EOF

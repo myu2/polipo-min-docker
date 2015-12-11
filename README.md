@@ -8,7 +8,7 @@ Put your polipo config files to ./etc/polipo/{config,option} if you want.
 ```sh
 git clone https://github.com/myu2/polipo-min-docker.git
 docker build -t myu2/polipo-min-docker polipo-min-docker
-docker run -i -d -p 8123:8123 --name polipo-min myu2/polipo-min-docker
+docker run -d -p 8123:8123 -v `pwd`/etc/polipo:/etc/polipo  --name polipo-min polipo-min-docker
 ```
 
 # Generate Dockefile
